@@ -1,0 +1,60 @@
+@font-face{
+    font-family: 'dosis';
+    src: url('/main/fonts/Dosis-Bold.ttf');
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  @font-face{
+    font-family: 'dosis';
+    src: url('/main/fonts/Dosis-Medium.ttf');
+    font-style: normal;
+    font-weight: 200;
+  }
+
+body{
+    background: linear-gradient(90deg, rgba(205,234,242,1) 28%, rgba(171,220,230,1) 70%);
+}
+
+.title{
+    padding-top: 75px
+}
+
+.title h1{
+    font-family: dosis;
+    font-weight: 400;
+}
+.subtitle{
+    margin-bottom: 40px;
+}
+.subtitle h5{
+    font-family: dosis;
+    font-weight: 200;
+    color: #3b3b3b
+}
+
+.button-group a{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin:auto;
+    width:45%;
+    margin-bottom: 25px;
+    font-family: dosis;
+    font-weight: 400;
+    color: #222222;
+}
+
+.btn-change{
+    background: transparent;
+    box-shadow: 1px 1px 10px #cacaca;
+    -webkit-transition: all 0.5s ease-in-out;
+    border: 0px;
+    color: #fff;
+    border: 1px solid rgb(26, 26, 26);
+}
+.btn-change:hover{
+    -webkit-transform: scale(1.1);
+    background: #31708f;
+    border: none;
+    box-shadow: 1px 1px 10px #808080;
+}
