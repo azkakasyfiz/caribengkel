@@ -53,6 +53,19 @@ Route::get('/wishlist', 'ClientAreaController@wishlist')->middleware('auth');
 Route::get('/wish/{id_product}', 'ClientAreaController@addWishlist')->middleware('auth');
 Route::get('/unwish/{id_product}', 'ClientAreaController@deleteWishlist')->middleware('auth');
 
+Route::get('/keranjang', 'ClientAreaController@keranjang')->middleware('auth');
+Route::get('/cart/{id_product}', 'ClientAreaController@addKeranjang')->middleware('auth');
+Route::get('/cart/{id_product}/plus', 'ClientAreaController@addPlusKeranjang')->middleware('auth');
+Route::get('/cart/{id_product}/minus', 'ClientAreaController@addMinusKeranjang')->middleware('auth');
+Route::get('/uncart/{id_product}', 'ClientAreaController@deleteKeranjang')->middleware('auth');
+
 Route::get('/bengkel-favorit', 'ClientAreaController@bengkelFav')->middleware('auth');
 Route::get('/fav/{id_bengkel}', 'ClientAreaController@addToFav')->middleware('auth');
 Route::get('/unfav/{id_bengkel}', 'ClientAreaController@deleteFav')->middleware('auth');
+
+
+
+Route::group(['middleware' => ['auth','cekrole:admin,consumer']], function (){
+    Route::get('/admin', 'HomeController@admin');
+    Route::post('/admin/inputproduct', 'ClientAreaController@AddBengkelProduct');
+});

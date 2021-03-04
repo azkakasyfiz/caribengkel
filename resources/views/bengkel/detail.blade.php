@@ -89,7 +89,7 @@
 								<p style="font-size:17px">Support :</p>
 								<p class="mb-5" style="font-size: 23px; color:black">
 									@for($i = 0;$i < 15 && $bengkel->{'specialties'.$i} != NULL; $i++)
-										{{ $bengkel->{'specialties'.$i} }}, 
+										{{ $bengkel->{'specialties'.$i} }},
 									@endfor
 								</p>
 
@@ -106,7 +106,7 @@
 										<div class="card mb-4">
 											<div class="row no-gutters">
 												<div class="col-md-4">
-													<img src="/produk-img/{{$product->picUrl}}" class="img-fluid mx-auto d-block" style="width:auto;height:200px;object-fit:cover" alt="">
+													<img src="/picUrl_product/{{$product->picUrl}}" class="img-fluid mx-auto d-block" style="width:auto;height:200px;object-fit:cover" alt="">
 												</div>
 												<div class="col-md-8" style="border-left: 1px solid #aaaaaa">
 													<div class="card-block pl-3 pt-3">
@@ -124,7 +124,7 @@
 																<p class="card-text ">{{$product->nama_brand}}</p>
 															</div>
 														</div>
-														
+
 													</div>
 												</div>
 											</div>
@@ -144,7 +144,7 @@
 										<div class="card mb-4">
 											<div class="row no-gutters">
 												<div class="col-md-4">
-													<img src="/produk-img/{{$product->picUrl}}" class="img-fluid" style="width:auto;height:200px;object-fit:cover" alt="">
+													<img src="/picUrl_product/{{$product->picUrl}}" class="img-fluid" style="width:auto;height:200px;object-fit:cover" alt="">
 												</div>
 												<div class="col-md-8" style="border-left: 1px solid #aaaaaa">
 													<div class="card-block pl-3 pt-3">
@@ -162,8 +162,8 @@
 																<p class="card-text ">{{$product->nama_brand}}</p>
 															</div>
 														</div>
-															<a href="/wish/{{$product->id}}" style=color:red><i class="fa fa-heart" style="text-align:right"></i></a>
-														
+														<a href="/wish/{{$product->id}}" style=color:red><i class="fa fa-heart" style="text-align:right"></i></a>
+														<a href="/cart/{{$product->id}}" style=color:red><p class="card-text mb-0" style="color:black">Masukkan ke keranjang</p></a>
 													</div>
 												</div>
 											</div>
@@ -172,7 +172,7 @@
 								@endforeach
 								</div>
 							</div>
-							
+
 							<div class="tab-pane fade" id="pills-discuss" role="tabpanel" aria-labelledby="pills-discuss-tab">
 								<h3 class="tab-title">Diskusi</h3>
 								<div class="product-review">
@@ -189,7 +189,7 @@
 							  				</div>
 							  				<div class="review-comment">
 							  					<p>
-							  						{{$discuss->message}}	
+							  						{{$discuss->message}}
 												</p>
 							  				</div>
 											<hr>
@@ -262,12 +262,37 @@
 					<!-- Map Widget -->
 					<div class="widget map">
 						<div class="map">
-							<div id="map"></div>
+							<div id="map">
+							<script src="http://maps.googleapis.com/maps/api/js"></script>
+
+							<script>
+								// fungsi initialize untuk mempersiapkan peta
+								function initialize() {
+								var propertiPeta = {
+									center:new google.maps.LatLng(-8.5830695,116.3202515),
+									zoom:9,
+									mapTypeId:google.maps.MapTypeId.ROADMAP
+								};
+
+								var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+								}
+
+								// membuat Marker
+								var marker=new google.maps.Marker({
+									position: new google.maps.LatLng(-8.5830695,116.3202515),
+									map: peta
+								});
+
+								// event jendela di-load
+								google.maps.event.addDomListener(window, 'load', initialize);
+							</script>
+								<div id="googleMap" style="width:100%;height:380px;"></div>
+							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<!-- Container End -->

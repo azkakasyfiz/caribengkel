@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title')</title>
-  
+
   <!-- PLUGINS CSS STYLE -->
   <link href="/main/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
   <!-- Bootstrap -->
@@ -69,8 +69,8 @@
                                     </a>
                                     <!-- Dropdown list -->
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="/wishlist">Wishlist</a>
-                                        <a class="dropdown-item" href="/bengkel-favorit">Bengkel Favorit</a>
+                                        <a class="dropdown-item" href="/wishlist">Input Barang</a>
+                                        <a class="dropdown-item" href="/keranjang">Cek Pesanan</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                           onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -118,7 +118,7 @@
       </div>
     </div>
     <!-- Container End -->
-    
+
 </footer>
 <!-- JAVASCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

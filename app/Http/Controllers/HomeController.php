@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Brand;
 use App\Bengkel;
 use App\UserBengkelFav;
+use App\SparepartCategories;
 class HomeController extends Controller
 {
     /**
@@ -35,9 +36,18 @@ class HomeController extends Controller
 
                 $bengkel->fav = UserBengkelFav::where('id_bengkel', $bengkel->id)->get()->count();
             }
-        
-        
-        
+
+
+
         return view('index', ['brands' => $brands, 'bengkels' => $bengkels]);
+    }
+
+    public function admin()
+    {
+        $nama = SparepartCategories::select('id', 'nama')->get();
+        $bengkel = Bengkel::select('id', 'id_pemilik', 'nama_bengkel')->get();
+        return view('admin.input_barang', ['namas' => $nama , 'bengkels' => $bengkel]);
+
+
     }
 }

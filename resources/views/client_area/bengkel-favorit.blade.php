@@ -8,6 +8,9 @@
                     <li class="nav-item">
                         <a class="nav-link " href="/wishlist" style="font-size:20px">Wishlist</a>
                     </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="/keranjang" style="font-size:20px">Keranjang</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/bengkel-favorit" style="font-size:20px">Bengkel Favorit</a>
                     </li>
@@ -43,14 +46,14 @@
 								<p class="mb-0">Support :</p>
 								<p class="mb-0">
 									@for($i = 0;$i < 3 && $bengkel->{'specialties'.$i} != NULL; $i++)
-										{{ $bengkel->{'specialties'.$i} }}, 
+										{{ $bengkel->{'specialties'.$i} }},
 									@endfor
 									@isset($bengkel->specialties3)
 										and more
 									@endisset
 								</p>
 							</ul>
-							
+
                             <a href="/unfav/{{$bengkel->id}}" class="btn btn-danger" style="position:absolute;bottom:7px;height:35px;padding: 10px 7px; font-size: 10px">Hapus</a>
 						</div>
 					</div>

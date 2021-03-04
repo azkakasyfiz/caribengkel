@@ -70,7 +70,7 @@
                             <div class="product-item bg-light">
                                 <div class="card">
                                     <div class="thumb-content">
-                                        <img class="card-img-top img-fluid product-img-small" src="/produk-img/{{$product->picUrl}}" alt="Card image cap">
+                                        <img class="card-img-top img-fluid product-img-small" src="/picUrl_product/{{$product->picUrl}}" alt="Card image cap">
                                     </div>
                                     <div class="card-body" style="height:300px; position:relative">
                                         <h4 class="card-title" style="font-size:16px">{{$product->nama_product}}</h4>
@@ -88,7 +88,7 @@
                                                 <p class="card-text ">{{$product->nama_brand}}</p>
                                             </div>
                                         </div>
-                                        
+
                                         <div style="position:absolute;bottom: 10px;height:25px;">
                                             <a href="/wish/{{$product->id}}" class="" style="font-size:10px"><i class="fa fa-heart fa-md" style="color:red"></i>   Tambah ke wishlist</a>
                                         </div>
