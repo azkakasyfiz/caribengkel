@@ -112,26 +112,48 @@ class ClientAreaController extends Controller
     }
 
     public function addKeranjang($id_product){
+
+
+
+        if ($keranjang = UserKeranjang::where('id_product', '=', $id_product)->where('id_user', '=', Auth::id())->first()) {
+            return redirect()->back()->with('alert', 'Produk yang anda pilih sudah ada dalam keranjang!');
+        }
+
         $keranjang = new UserKeranjang;
         $keranjang->id_user = Auth::id();
         $keranjang->id_product = $id_product;
         $keranjang->quantity = "1";
 
         $keranjang->save();
-
         return redirect()->back()->with('alert', 'Berhasil menambahkan ke keranjang!');
+
+
+
+        //$keranjang->save();
+
+        //return redirect()->back()->with('alert', 'Berhasil menambahkan ke keranjang!');
 
     }
 
     public function addPlusKeranjang($id_product){
-        $keranjang = new UserKeranjang;
-        $keranjang->id_user = Auth::id();
-        $keranjang->id_product = $id_product;
-        $keranjang->quantity = "1";
+        $keranjang = UserKeranjang::where('id_product', '=', $id_product)
+        ->where('id_user', '=', Auth::id())->first();
+        $keranjang->quantity = $keranjang->quantity+1;
 
         $keranjang->save();
 
-        return redirect()->back()->with('alert', 'Berhasil menambahkan ke keranjang!');
+        return redirect()->back()->with('alert', 'Berhasil menambahkan jumlah barang!');
+
+    }
+
+    public function addMinusKeranjang($id_product){
+        $keranjang = UserKeranjang::where('id_product', '=', $id_product)
+        ->where('id_user', '=', Auth::id())->first();
+        $keranjang->quantity = $keranjang->quantity-1;
+
+        $keranjang->save();
+
+        return redirect()->back()->with('alert', 'Berhasil mengurangi jumlah barang!');
 
     }
 

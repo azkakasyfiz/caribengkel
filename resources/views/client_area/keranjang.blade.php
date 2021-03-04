@@ -44,12 +44,12 @@
                                                 </a>
                                             </li>-->
                                             <li class="list-inline-item">
-                                                <a class="edit" href="">
+                                                <a class="edit" href="/cart/{{$cart->id_product}}/minus">
                                                     <i class="fa fa-minus"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a class="edit" href="">
+                                                <a class="edit" href="/cart/{{$cart->id_product}}/plus">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </li>

@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function bengkel(){
         return $this->hasOne('App\Bengkel');
     }
+
+    public function userpesanan(){
+         return $this->hasMany('App\UserPesanan','id_user', 'id');
+    }
 }
