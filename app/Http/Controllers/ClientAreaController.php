@@ -10,6 +10,7 @@ use App\BengkelProduct;
 use App\Bengkel;
 use App\SparepartCategories;
 use App\User;
+use App\UserPesanan;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -108,12 +109,12 @@ class ClientAreaController extends Controller
             $cart->picUrl = $product->picUrl;
         }
 
-        return view('client_area.keranjang', ['keranjangs' => $keranjang]);
+        $pesanan = UserPesanan::where('id_user', Auth::id())->get() ->first();
+
+        return view('client_area.keranjang', ['keranjangs' => $keranjang, 'pesanans' => $pesanan]);
     }
 
     public function addKeranjang($id_product){
-
-
 
         if ($keranjang = UserKeranjang::where('id_product', '=', $id_product)->where('id_user', '=', Auth::id())->first()) {
             return redirect()->back()->with('alert', 'Produk yang anda pilih sudah ada dalam keranjang!');
@@ -125,9 +126,40 @@ class ClientAreaController extends Controller
         $keranjang->quantity = "1";
 
         $keranjang->save();
+
+        if ($pesanan = UserPesanan::where('id_user', '=', Auth::id())->first()) {
+            $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+            $pesanan->total_harga = $pesanan->total_harga+$barang->harga*$keranjang->quantity;
+
+            $pesanan->update();
+        }
+
+        $pesanan = new UserPesanan;
+        $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+        $pesanan->id_user =  $keranjang->id_user;
+        $pesanan->status = "0";
+        $pesanan->total_harga = "0";
+        $pesanan->total_harga = $pesanan->total_harga+$barang->harga*$keranjang->quantity;
+
+        $pesanan->save();
+
         return redirect()->back()->with('alert', 'Berhasil menambahkan ke keranjang!');
 
+        /*if ($pesanan = UserPesanan::where('id_user', '=', $pesanan->id_user)->first()) {
+            $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+            $pesanan->total_harga = $pesanan->total_harga+$barang->harga*$keranjang->quantity;
 
+            $keranjang->update();
+        }
+
+        $pesanan = new UserPesanan;
+        $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+        $pesanan->id_user =  $keranjang->id_user;
+        $pesanan->status = "0";
+        $pesanan->total_harga = "0";
+        $pesanan->total_harga = $pesanan->total_harga+$barang->harga*$keranjang->quantity;
+
+        $pesanan->update();*/
 
         //$keranjang->save();
 
@@ -142,6 +174,13 @@ class ClientAreaController extends Controller
 
         $keranjang->save();
 
+        $pesanan = UserPesanan::where('id_user', '=', Auth::id())->first();
+        $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+        //$pesanan->total_harga = $pesanan->total_harga-($barang->harga*$keranjang->quantity);
+        $pesanan->total_harga = $pesanan->total_harga + $barang->harga;
+
+        $pesanan->update();
+
         return redirect()->back()->with('alert', 'Berhasil menambahkan jumlah barang!');
 
     }
@@ -152,6 +191,12 @@ class ClientAreaController extends Controller
         $keranjang->quantity = $keranjang->quantity-1;
 
         $keranjang->save();
+
+        $pesanan = UserPesanan::where('id_user', '=', Auth::id())->first();
+        $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+        $pesanan->total_harga = $pesanan->total_harga - $barang->harga;
+
+        $pesanan->update();
 
         return redirect()->back()->with('alert', 'Berhasil mengurangi jumlah barang!');
 
@@ -212,5 +257,28 @@ class ClientAreaController extends Controller
         ]);
         //dd($request);
         return redirect('/admin')->with('alert', 'Berhasil menambah produk!');
+    }
+
+    public function checkout(){
+        $keranjang = UserKeranjang::where('id_user', Auth::id())->get();
+
+        foreach($keranjang as $cart){
+            $product = BengkelProduct::where('bengkel_products.id', '=', $cart->id_product)
+            ->join('bengkels', 'bengkels.id', 'bengkel_products.id_bengkel')
+            ->select('bengkels.nama_bengkel', 'bengkel_products.*')
+            ->first();
+
+            $cart->harga = $product->harga;
+            $cart->nama_bengkel = $product->nama_bengkel;
+            $cart->id_bengkel = $product->id_bengkel;
+            $cart->quantity = $cart->quantity;
+            $cart->nama_product = $product->nama_product;
+            $cart->picUrl = $product->picUrl;
+        }
+
+        $pesanan = UserPesanan::where('id_user', Auth::id())->get() ->first();
+        $checkout = $pesanan->total_harga + $pesanan->id;
+
+        return view('client_area.checkout', ['keranjangs' => $keranjang, 'pesanans' => $pesanan, 'checkouts' => $checkout]);
     }
 }

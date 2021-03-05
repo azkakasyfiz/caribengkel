@@ -58,6 +58,7 @@ Route::get('/cart/{id_product}', 'ClientAreaController@addKeranjang')->middlewar
 Route::get('/cart/{id_product}/plus', 'ClientAreaController@addPlusKeranjang')->middleware('auth');
 Route::get('/cart/{id_product}/minus', 'ClientAreaController@addMinusKeranjang')->middleware('auth');
 Route::get('/uncart/{id_product}', 'ClientAreaController@deleteKeranjang')->middleware('auth');
+Route::get('/keranjang/checkout/{id_product}', 'ClientAreaController@checkout')->middleware('auth');
 
 Route::get('/bengkel-favorit', 'ClientAreaController@bengkelFav')->middleware('auth');
 Route::get('/fav/{id_bengkel}', 'ClientAreaController@addToFav')->middleware('auth');

@@ -79,9 +79,9 @@
 				<div class="sidebar">
 					<div class="widget price text-center">
 						<h4>Sub Total</h4>
-						<p>Rp. {{ number_format(($cart->harga) * $cart->quantity),0,',','.' }}</p>
+						<p>Rp. {{ number_format(($pesanans->total_harga),0,',','.' )}}</p>
                         <!-- Submii button -->
-						<a href="" class="btn btn-transparent-white">Checkout</a>
+						<a href="/keranjang/checkout/{id_product}" class="btn btn-transparent-white">Checkout</a>
 					</div>
 				</div>
 			</div>

@@ -8,9 +8,6 @@
                     <li class="nav-item">
                         <a class="nav-link " href="/wishlist" style="font-size:20px">Wishlist</a>
                     </li>
-					<li class="nav-item">
-                        <a class="nav-link" href="/keranjang" style="font-size:20px">Keranjang</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/bengkel-favorit" style="font-size:20px">Bengkel Favorit</a>
                     </li>

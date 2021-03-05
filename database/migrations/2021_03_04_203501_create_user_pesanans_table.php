@@ -16,10 +16,8 @@ class CreateUserPesanansTable extends Migration
         Schema::create('user_pesanans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('id_user')->unsigned();
-            $table->date('tanggal');
             $table->string('status');
-            $table->integer('kode');
-            $table->integer('jumlah_harga');
+            $table->integer('total_harga');
             $table->timestamps();
         });
     }

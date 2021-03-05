@@ -262,7 +262,8 @@
 					<!-- Map Widget -->
 					<div class="widget map">
 						<div class="map">
-							<div id="map">
+							<iframe src="{{$bengkel->location}}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+							<!--<div id="map">
 							<script src="http://maps.googleapis.com/maps/api/js"></script>
 
 							<script>
@@ -287,7 +288,7 @@
 								google.maps.event.addDomListener(window, 'load', initialize);
 							</script>
 								<div id="googleMap" style="width:100%;height:380px;"></div>
-							</div>
+							</div>-->
 						</div>
 					</div>
 				</div>
