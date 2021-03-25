@@ -17,6 +17,11 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+Route::get('/registeradmin', 'HomeController@registeradmin');
+Route::post('/registadmin', 'HomeController@registadmin');
+
+
+
 
 Route::get('/bengkel/{id}', 'BengkelController@show');
 
@@ -64,9 +69,28 @@ Route::get('/bengkel-favorit', 'ClientAreaController@bengkelFav')->middleware('a
 Route::get('/fav/{id_bengkel}', 'ClientAreaController@addToFav')->middleware('auth');
 Route::get('/unfav/{id_bengkel}', 'ClientAreaController@deleteFav')->middleware('auth');
 
+Route::get('/pesantowing', 'TowingController@pesanTowing')->middleware('auth');
+Route::post('/pesantowing/input', 'TowingController@addPesananTowing')->middleware('auth');
+Route::get('/pesantowing/berhasil', 'TowingController@checkoutTowing')->middleware('auth');
+Route::get('/statustowing', 'TowingController@statusTowing')->middleware('auth');
 
 
-Route::group(['middleware' => ['auth','cekrole:admin,consumer']], function (){
+
+Route::group(['middleware' => ['cekrole:admin']], function (){
     Route::get('/admin', 'HomeController@admin');
     Route::post('/admin/inputproduct', 'ClientAreaController@AddBengkelProduct');
+
+    Route::get('/registerbengkel', 'HomeController@registerbengkel');
+    Route::post('/registbengkel', 'HomeController@registbengkel');
+
+    Route::get('/dashboard', 'HomeController@dashboard_admin');
+    Route::get('/deleteproduct/{id_product}', 'HomeController@deleteProduct');
+    Route::get('/listpesanan', 'HomeController@listPesanan');
+});
+
+Route::group(['middleware' => ['cekrole:towing']], function (){
+    Route::get('/admintowing', 'TowingController@adminTowing');
+    Route::get('/admintowing/acc/{id}', 'TowingController@accTowing');
+    Route::get('/admintowing/dec/{id}', 'TowingController@decTowing');
+    Route::get('/admintowing/pay/{id}', 'TowingController@payTowing');
 });

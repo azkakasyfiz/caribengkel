@@ -1,5 +1,5 @@
 @extends('layouts.wsearch2')
-@section('Admin | caribengkel.id')
+@section('title', 'Pesan Towing | caribengkel.id')
 @section('content')
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
 
     <!-- Vendor CSS-->
     <link href="/regForm/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link type="text/css"  href="bootstrap-datepicker/css/bootstrap-datepicker.css"  rel="stylesheet">
     <link href="/regForm/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
@@ -30,81 +31,60 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">INPUT BARANG</h2>
+                    <h2 class="title">PESAN TOWING</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/admin/inputproduct" id="InputProduct" enctype="multipart/form-data">
+                    <form method="post" action="/pesantowing/input" id="InputPesananTowing" enctype="multipart/form-data">
                     @csrf
-
                         <div class="form-row">
                             <div class="value">
-                                <!-- <label for="categories">Kategori Barang</label> -->
-                                <select id="id_categories" name="id_categories" class="form-control">
-                                    <option value="" disabled selected>Pilih Kategori Barang</option>
-                                    @foreach ( $namas as $p )
-                                    <option value="{{ $p->id }}">{{ $p->nama }}</option>
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="nama_pemesan" id="nama_pemesan" value="{{ old('nama_pemesan') }}" placeholder="Nama Pemesan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="phone" name="no_hp" id="no_hp" value="{{ old('no_hp') }}" placeholder="No Handphone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="alamat" id="alamat" value="{{ old('alamat') }}" placeholder="Alamat Lengkap">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="value">
+                                <label for="categories">Tanggal Pemesanan</label>
+                                <div class="input-group">
+                                    <input class="input--style-5" type="date" name="date" id="date" value="{{ old('date') }}" placeholder="Tanggal Pemesanan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="value">
+                                <label for="categories">Jam Pemesanan</label>
+                                <div class="input-group">
+                                    <input class="input--style-5" type="time" name="time" id="time" value="{{ old('time') }}:00" placeholder="Jam Pemesanan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="value">
+                                <select id="id_bengkel_tujuan" name="id_bengkel_tujuan" class="form-control">
+                                    <option value="" disabled selected>Pilih Bengkel</option>
+                                    @foreach($bengkels as $bengkel)
+                                    <option value="{{$bengkel->id}}">{{$bengkel->nama_bengkel}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <!-- <label for="categories">Kategori Barang</label> -->
-                                <select id="kendaraan" name="kendaraan" class="form-control">
-                                    <option value="" disabled selected>Pilih Jenis Kendaraan</option>
-                                    <option value="mobil">Mobil</option>
-                                    <option value="motor">Motor</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <select id="nama_brand" name="nama_brand" class="form-control">
-                                    <option value="" disabled selected>Pilih Brand</option>
-                                    @foreach ( $brands as $p )
-                                    <option value="{{ $p->nama }}">{{ $p->nama }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="nama_product" id="nama_product" value="{{ old('nama_product') }}" placeholder="Nama Produk">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="number" name="quantity" id="quantity" value="{{ old('quantity') }}" placeholder="Jumlah Stok">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="number" name="harga" id="harga" value="{{ old('harga') }}" placeholder="Harga Satuan (Rupiah)">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="kendaraan" value="{{ old('kendaraan') }}" placeholder="Nama Kendaraan">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="value">
-                                <div class="input-group">
-                                <h5>Upload Gambar</h5>
-                                <input type="file" class="form-control-file d-inline" name="picUrl" value="{{ old('picUrl') }}">
-                                </div>
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Upload Produk</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Pesan</button>
                         </div>
                     </form>
                 </div>
@@ -121,6 +101,18 @@
 
     <!-- Main JS-->
     <script src="/regForm/js/global.js"></script>
+
+    <script src="jquery/jquery-2.2.1.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <script>
+    $('#tanggal').datepicker({
+            format: 'yyyy-mm-dd',
+            daysOfWeekDisabled: "0",
+            autoclose:true
+        });
+    </script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 

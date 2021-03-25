@@ -12,9 +12,9 @@
 					<!-- User Widget -->
 					<div class="widget user-dashboard-profile">
 						<!-- User Name -->
-						<h5 class="text-center">Pembayaran</h5>
-						<p>Silakan transfer ke rekening yang ada dibawah ini dengan benar</p>
-                        <h4 class="text-center">BNI 0123456789</h4>
+						<h5 class="text-center">Nomor Antrian:</h5>
+                        <h4 class="text-center">{{$nomorantrians}}</h4>
+                        <p>Silakan tunjukan nomor antrian anda ke bengkel tujuan dengan benar</p>
 						<!--<a href="user-profile.html" class="btn btn-main-sm">Edit Profile</a>-->
 					</div>
 					<div class="row">
@@ -22,9 +22,9 @@
                         <div class="col-md-12">
                             <div class="sidebar">
                                 <div class="widget price text-center">
-                                    <h4>Transfer Sebesar</h4>
+                                    <h4>Total Biaya Pembelian</h4>
                                     <p>Rp. {{ number_format(($checkouts),0,',','.' )}}</p>
-                                    <h6>*Transfer hingga angka terakhir</h6>
+                                    <h6>Pembayaran dilakukan secara cash di toko terkait</h6>
                                     <!-- Submii button -->
                                     <!--<a href="" class="btn btn-transparent-white">Upload Bukti Pembayaran</a>-->
                                 </div>

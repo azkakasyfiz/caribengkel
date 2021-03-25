@@ -24,14 +24,14 @@
 							</div>
 						</div>
 					</form>
-					
+
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
 	<div class="container">
-	
+
 	</div>
 	<!-- Container End -->
 </section>
@@ -47,7 +47,7 @@
 
 <section class="popular-deals section" style="padding-top:30px">
 		<div class="container mb-5">
-			<div class="row justify-content-center mt-5">	
+			<div class="row justify-content-center mt-5">
 				<div class="col-lg-10 col-10">
 					<div id="web_banner" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
@@ -117,7 +117,7 @@
 				<div class="product-item bg-light">
 					<div class="card">
 						<div class="thumb-content">
-							<img class="card-img-top img-fluid product-img-small" src="/bengkel-img/{{$bengkel->picUrl}}.jpg" alt="Card image cap">
+							<img class="card-img-top img-fluid product-img-small" src="/picUrl_bengkel/{{$bengkel->picUrl}}" alt="Card image cap">
 						</div>
 						<div class="card-body" style="height:280px;position:relative">
 							<h4 class="card-title">{{$bengkel->nama_bengkel}}</h4>
@@ -139,14 +139,14 @@
 								<p class="mb-0">Support :</p>
 								<p class="mb-0">
 									@for($i = 0;$i < 3 && $bengkel->{'specialties'.$i} != NULL; $i++)
-										{{ $bengkel->{'specialties'.$i} }}, 
+										{{ $bengkel->{'specialties'.$i} }},
 									@endfor
 									@isset($bengkel->specialties3)
 										and more
 									@endisset
 								</p>
 							</ul>
-							
+
 							<p style="position:absolute;height:30px;bottom:2px"><i class="fa fa-heart fa-md" style="color:red;"></i>   {{$bengkel->fav}}</p>
 						</div>
 					</div>
@@ -182,8 +182,8 @@
 						<div class="card card-brand zoom">
 							<img class="card-img-top brand-img" src="/brand-img/{{$brand->picUrl}}" alt="Card image cap">
 							<h1 class="m-0 mb-1" style="text-align:center">{{$brand->nama}}</h1>
-						</div>	
-						</a>				
+						</div>
+						</a>
 					</div>
 					@endforeach
 				</div>
@@ -195,7 +195,7 @@
 
 @endsection
 
-  
+
 
 
 

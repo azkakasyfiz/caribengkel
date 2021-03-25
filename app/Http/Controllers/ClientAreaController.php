@@ -108,7 +108,7 @@ class ClientAreaController extends Controller
             $cart->nama_product = $product->nama_product;
             $cart->picUrl = $product->picUrl;
         }
-
+        //dd($keranjang);
         $pesanan = UserPesanan::where('id_user', Auth::id())->get() ->first();
 
         return view('client_area.keranjang', ['keranjangs' => $keranjang, 'pesanans' => $pesanan]);
@@ -212,6 +212,12 @@ class ClientAreaController extends Controller
         ->where('id_user', '=', Auth::id())->first();
 
         if ($keranjang != null) {
+            $pesanan = UserPesanan::where('id_user', '=', Auth::id())->first();
+            $barang = BengkelProduct::where('id', $keranjang->id_product)->first();
+            $pesanan->total_harga = $pesanan->total_harga - ($keranjang->quantity*$barang->harga);
+
+            $pesanan->update();
+
             $keranjang->delete();
             return redirect('/keranjang')->with('alert', 'Berhasil menghapus barang di keranjang!');
         }
@@ -227,6 +233,7 @@ class ClientAreaController extends Controller
 
         $request->validate([
             'id_categories' => 'required',
+            'nama_brand' => 'required',
             'nama_product' => 'required',
             'quantity' => 'required',
             'harga' => 'required',
@@ -249,6 +256,7 @@ class ClientAreaController extends Controller
         BengkelProduct::create([
             'id_bengkel' => $bengkel->id,
             'id_categories' => $request->id_categories,
+            'nama_brand' => $request->nama_brand,
             'nama_product' => $request->nama_product,
             'quantity' => $request->quantity,
             'harga' => $request->harga,
@@ -256,7 +264,7 @@ class ClientAreaController extends Controller
             'picUrl' => $nama_file
         ]);
         //dd($request);
-        return redirect('/admin')->with('alert', 'Berhasil menambah produk!');
+        return redirect('/dashboard')->with('alert', 'Berhasil menambah produk!');
     }
 
     public function checkout(){
@@ -277,8 +285,9 @@ class ClientAreaController extends Controller
         }
 
         $pesanan = UserPesanan::where('id_user', Auth::id())->get() ->first();
-        $checkout = $pesanan->total_harga + $pesanan->id;
+        $checkout = $pesanan->total_harga; //+ $pesanans->id;
+        $nomorantrian = $pesanan->id;
 
-        return view('client_area.checkout', ['keranjangs' => $keranjang, 'pesanans' => $pesanan, 'checkouts' => $checkout]);
+        return view('client_area.checkout', ['keranjangs' => $keranjang, 'pesanans' => $pesanan, 'checkouts' => $checkout, 'nomorantrians' => $nomorantrian]);
     }
 }

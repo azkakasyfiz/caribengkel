@@ -78,8 +78,23 @@
                                         @if (auth()->user()->role == "consumer")
                                         <a class="dropdown-item" href="/bengkel-favorit">Bengkel Favorit</a>
                                         @endif
+                                        @if (auth()->user()->role == "consumer")
+                                        <a class="dropdown-item" href="/pesantowing">Pesan Towing</a>
+                                        @endif
+                                        @if (auth()->user()->role == "consumer")
+                                        <a class="dropdown-item" href="/statustowing">Status Towing</a>
+                                        @endif
+                                        @if (auth()->user()->role == "admin")
+                                        <a class="dropdown-item" href="/dashboard">List Barang</a>
+                                        @endif
                                         @if (auth()->user()->role == "admin")
                                         <a class="dropdown-item" href="/admin">Input Barang</a>
+                                        @endif
+                                        @if (auth()->user()->role == "admin")
+                                        <a class="dropdown-item" href="/listpesanan">List Pesanan</a>
+                                        @endif
+                                        @if (auth()->user()->role == "towing")
+                                        <a class="dropdown-item" href="/admintowing">Dasboard Towing</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                           onclick="event.preventDefault();

@@ -9,7 +9,7 @@
     <meta name="author" content="caribengkel.id">
 
     <!-- Title Page-->
-    <title>Register | caribengkel.id</title>
+    <title>Register Bengkel| caribengkel.id</title>
 
     <!-- Icons font CSS-->
     <link href="/regForm/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -30,10 +30,10 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Registrasi Akun</h2>
+                    <h2 class="title">Registrasi Akun Penjual</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="post" action="/registadmin">
                     @csrf
                         <div class="form-row">
                             <div class="value">
@@ -74,13 +74,10 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Register Admin</button>
                         </div>
                         <div >
                             <p style="margin-top:20px">Sudah punya akun? <a href="/login">Login</a></p>
-                        </div>
-                        <div >
-                            <p style="margin-top:20px">Anda pemilik bengkel? <a href="/registeradmin">Sign Up Bengkel</a></p>
                         </div>
                     </form>
                 </div>

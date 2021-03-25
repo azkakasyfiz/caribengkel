@@ -19,6 +19,8 @@ class CreateBengkelProductsTable extends Migration
             $table->foreign('id_bengkel')->references('id')->on('bengkels');
             $table->bigInteger('id_categories')->unsigned();
             $table->foreign('id_categories')->references('id')->on('sparepart_categories');
+            $table->bigInteger('id_brand')->unsigned();
+            $table->foreign('id_brand')->references('id')->on('brands');
             $table->string('nama_product');
             $table->integer('quantity');
             $table->integer('harga'); //harga satuan

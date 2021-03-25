@@ -22,21 +22,13 @@
 					<ol class="carousel-indicators">
 						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
 					</ol>
 					<div class="carousel-inner" style="background: #8c8c8c; box-shadow:1px 1px 10px #808080;">
 						<div class="carousel-item active">
-							<img class="d-block carousel-bengkel-img" src="/bengkel-img/{{$bengkel->subPic}}/1.jpg" alt="First slide">
+							<img class="d-block carousel-bengkel-img" src="/picUrl_bengkel/{{$bengkel->picUrl}}" alt="First slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block carousel-bengkel-img" src="/bengkel-img/{{$bengkel->subPic}}/2.jpg" alt="Second slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block carousel-bengkel-img" src="/bengkel-img/{{$bengkel->subPic}}/3.jpg" alt="Third slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block carousel-bengkel-img" src="/bengkel-img/{{$bengkel->subPic}}/4.jpg" alt="Third slide">
+							<img class="d-block carousel-bengkel-img" src="/subPic_bengkel/{{$bengkel->subPic}}" alt="Second slide">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
