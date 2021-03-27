@@ -20,6 +20,9 @@ Auth::routes();
 Route::get('/registeradmin', 'HomeController@registeradmin');
 Route::post('/registadmin', 'HomeController@registadmin');
 
+Route::get('/registerbengkel', 'HomeController@registerbengkel');
+Route::post('/registbengkel', 'HomeController@registbengkel');
+
 
 
 
@@ -80,8 +83,10 @@ Route::group(['middleware' => ['cekrole:admin']], function (){
     Route::get('/admin', 'HomeController@admin');
     Route::post('/admin/inputproduct', 'ClientAreaController@AddBengkelProduct');
 
-    Route::get('/registerbengkel', 'HomeController@registerbengkel');
-    Route::post('/registbengkel', 'HomeController@registbengkel');
+
+
+    Route::get('/inputspecialties', 'HomeController@formSpecialties');
+    Route::post('/inputspecialties/add', 'ClientAreaController@addBengkelSpecialties');
 
     Route::get('/dashboard', 'HomeController@dashboard_admin');
     Route::get('/deleteproduct/{id_product}', 'HomeController@deleteProduct');

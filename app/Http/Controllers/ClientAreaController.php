@@ -9,6 +9,7 @@ use App\UserBengkelFav;
 use App\BengkelProduct;
 use App\Bengkel;
 use App\SparepartCategories;
+use App\BengkelSpecialties;
 use App\User;
 use App\UserPesanan;
 use Illuminate\Support\Facades\DB;
@@ -265,6 +266,24 @@ class ClientAreaController extends Controller
         ]);
         //dd($request);
         return redirect('/dashboard')->with('alert', 'Berhasil menambah produk!');
+    }
+
+    public function AddBengkelSpecialties(Request $request)
+    {
+
+        $request->validate([
+            'id_brand' => 'required'
+        ]);
+        //dd($request);
+
+        $bengkel = Bengkel::where('id_pemilik', '=', Auth::id())->first();
+
+        BengkelSpecialties::create([
+            'id_bengkel' => $bengkel->id,
+            'id_brand' => $request->id_brand
+        ]);
+        //dd($request);
+        return redirect('/inputspecialties')->with('alert', 'Berhasil menambah brand specialties!');
     }
 
     public function checkout(){

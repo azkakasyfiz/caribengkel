@@ -82,7 +82,7 @@ class HomeController extends Controller
             'role' => 'admin',
             'alamat' => NULL
         ]);
-        return redirect('/registerbengkel');
+        return redirect('/registerbengkel')->with('alert', 'Berhasil mendaftarkan akun admin!');
     }
 
     public function registerbengkel()
@@ -131,8 +131,9 @@ class HomeController extends Controller
 
         //dd($request);
 
+        $users = User::latest()->first();
         Bengkel::create([
-            'id_pemilik' => Auth::id(),
+            'id_pemilik' => $users->id,
             'nama_bengkel' => $request->nama_bengkel,
             'telp' => $request->telp,
             'daerah' => $request->daerah,
@@ -147,7 +148,7 @@ class HomeController extends Controller
             'subPic' => $nama_file2
         ]);
         //dd($request);
-        return redirect('/admin')->with('alert', 'Berhasil mendaftarkan bengkel!');
+        return redirect('/login')->with('alert', 'Berhasil mendaftarkan bengkel! Silakan Login!');
     }
 
     public function dashboard_admin()
@@ -226,4 +227,11 @@ class HomeController extends Controller
         return view('admin.list_pesanan', ['listpesanans' => $pesanan]);
     }
 
+    public function formSpecialties()
+    {
+        $bengkel = Bengkel::where('id_pemilik', Auth::id())->get() ->first();
+        $brand = Brand::all();
+
+        return view('admin.input_specialties', ['brands' => $brand/*, 'bengkels' => $bengkel*/]);
+    }
 }

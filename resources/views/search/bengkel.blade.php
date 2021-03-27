@@ -81,7 +81,7 @@
                             <div class="product-item bg-light">
                                 <div class="card">
                                     <div class="thumb-content">
-                                        <img class="card-img-top img-fluid product-img-small" src="/picUrl_product/{{$bengkel->picUrl}}.jpg" alt="Card image cap">
+                                        <img class="card-img-top img-fluid product-img-small" src="/picUrl_bengkel/{{$bengkel->picUrl}}" alt="Card image cap">
                                     </div>
                                     <div class="card-body" style="height:280px;position:relative">
                                         <h4 class="card-title">{{$bengkel->nama_bengkel}}</h4>
@@ -135,7 +135,7 @@
                             <div class="product-item bg-light">
                                 <div class="card">
                                     <div class="thumb-content">
-                                        <img class="card-img-top img-fluid product-img-small" src="/produk-img/{{$product->picUrl}}" alt="Card image cap">
+                                        <img class="card-img-top img-fluid product-img-small" src="/picUrl_product/{{$product->picUrl}}" alt="Card image cap">
                                     </div>
                                     <div class="card-body" style="height:300px; position:relative">
                                         <h4 class="card-title" style="font-size:16px">{{$product->nama_product}}</h4>

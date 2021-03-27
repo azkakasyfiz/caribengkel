@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Upload Produk</button>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Input Bengkel</button>
                         </div>
                     </form>
                 </div>

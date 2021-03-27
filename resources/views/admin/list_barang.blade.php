@@ -20,7 +20,7 @@
                                 <th class="text-center">Kendaraan</th>
                                 <th class="text-center">Quantity</th>
                                 <th class="text-center">Price</th>
-                                <th class="text-center">Action</th>
+                                <!-- <th class="text-center">Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,7 @@
                                 <td class="product-category"><span class="categories">{{$p->kendaraan}}</span></td>
                                 <td class="product-category"><span class="categories">{{$p->quantity}} pcs</span></td>
                                 <td class="product-category"><span class="categories">Rp. {{ number_format($p->harga,0,',','.')}}</span></td>
-                                <td class="action" data-title="Action">
+                                <!--<td class="action" data-title="Action">
                                     <div class="">
                                         <ul class="list-inline justify-content-center">
                                             <li class="list-inline-item">
@@ -47,6 +47,7 @@
                                         </ul>
                                     </div>
                                 </td>
+                                -->
                             </tr>
                             @endforeach
 

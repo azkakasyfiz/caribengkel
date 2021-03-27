@@ -91,6 +91,9 @@
                                         <a class="dropdown-item" href="/admin">Input Barang</a>
                                         @endif
                                         @if (auth()->user()->role == "admin")
+                                        <a class="dropdown-item" href="/inputspecialties">Input Specialties</a>
+                                        @endif
+                                        @if (auth()->user()->role == "admin")
                                         <a class="dropdown-item" href="/listpesanan">List Pesanan</a>
                                         @endif
                                         @if (auth()->user()->role == "towing")
